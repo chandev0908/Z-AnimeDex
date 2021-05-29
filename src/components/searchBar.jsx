@@ -1,17 +1,17 @@
 import React from "react";
 
 function searchBar() {
-  return ( 
+  return (
     <div className="text-white search flex flex-wrap flex-1 justify-center items-center gap-1 z-10">
       <input
-        className="rounded p-1.5 text-black w-64 border-1 border-lightblue focus:border-lightblue"
+        className="transition-all duration-700 ease-in-out rounded p-1.5 md:p-2 lg:p-3 text-black w-64 md:w-80 lg:w-96 border-1 border-lightblue focus:border-lightblue"
         type="text"
         name="search"
         id="searchId"
         placeholder="Search for your favorite anime or manga"
       />
       <svg
-        className="w-6 h-6"
+        className="transition-all duration-5000 ease-in-out w-8 md:w-10 lg:w-12 h-8 md:h-10 lg:h-12 cursor-pointer"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
