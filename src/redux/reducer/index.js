@@ -4,8 +4,8 @@ import topManga from './topMangaReducer';
 import animeDetails from './animeDetailsReducer';
 import animeSeason from './animeSeasonReducer'
 export default combineReducers({
-    topAnime: topAnime,
-    topManga: topManga,
-    animeDetails: animeDetails,
-    animeSeason: animeSeason
+    topAnime,
+    topManga,
+    animeDetails,
+    animeSeason
 });

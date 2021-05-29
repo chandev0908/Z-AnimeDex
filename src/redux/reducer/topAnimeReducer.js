@@ -5,7 +5,7 @@ const initState = {
     item: {}
 }
 
-export default (state=initState, action) => {
+export default function (state=initState, action){
     switch (action.type){
         case FETCH_TOP_ANIME:
             return{
