@@ -8,8 +8,10 @@ module.exports = {
       secondary: "#293053",
     }),
     fontSize: {
-      xxl: "2rem",
-      xxxl: "2.5rem"
+      primSize: "2rem",
+      xxl: "2.5rem",
+      xxxl: "3rem",
+      xxxxl: "3.5rem"
     },
     borderColor: theme => ({
       DEFAULT: theme('colors.gray.300', 'currentColor'),
