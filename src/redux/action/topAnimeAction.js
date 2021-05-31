@@ -5,7 +5,7 @@ function fetchTopAnime (page, subtype) {
     if(page){
         if(subtype){
             return async function(dispatch){
-                const res = await axios(`https://api.jikan.moe/v3/top/anime/${page}/${subtype}`);
+                const res = await axios(`/top/anime/${page}/${subtype}`);
                 dispatch({
                     type: FETCH_TOP_ANIME,
                     payload: res.data.top
@@ -13,7 +13,7 @@ function fetchTopAnime (page, subtype) {
             }
         }
         return async function(dispatch){
-            const res = await axios(`https://api.jikan.moe/v3/top/anime/${page}/}`);
+            const res = await axios(`/top/anime/${page}/}`);
             dispatch({
                 type: FETCH_TOP_ANIME,
                 payload: res.data.top
@@ -21,7 +21,7 @@ function fetchTopAnime (page, subtype) {
         }
     }
     return async function(dispatch){
-        const res = await axios(`https://api.jikan.moe/v3/top/anime/`);
+        const res = await axios(`/top/anime`);
         dispatch({
             type: FETCH_TOP_ANIME,
             payload: res.data.top

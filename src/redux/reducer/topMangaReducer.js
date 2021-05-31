@@ -1,4 +1,4 @@
-import {FETCH_TOP_ANIME} from '../types';
+import {FETCH_TOP_MANGA} from '../types';
 
 const initState = {
     items: [],
@@ -7,7 +7,7 @@ const initState = {
 
 export default (state = initState, action) => {
     switch(action.type){
-        case FETCH_TOP_ANIME:
+        case FETCH_TOP_MANGA:
             return {
                 ...state,
                 items: action.payload

@@ -5,7 +5,7 @@ function fetchAnimeSeason (year, season) {
     if(year){
         if(season){
             return async function(dispatch){
-                const res = await axios(`https://api.jikan.moe/v3/season/${season}`);
+                const res = await axios(`/season/${season}`);
                 dispatch({
                     type: FETCH_SEASON_ANIME,
                     payload: res
@@ -13,7 +13,7 @@ function fetchAnimeSeason (year, season) {
             }
         }
         return async function(dispatch){
-            const res = await axios(`https://api.jikan.moe/v3/season/${year}`);
+            const res = await axios(`/season/${year}`);
             dispatch({
                 type: FETCH_SEASON_ANIME,
                 payload: res
@@ -21,10 +21,10 @@ function fetchAnimeSeason (year, season) {
         }
     }
     return async function(dispatch){
-        const res = await axios(`https://api.jikan.moe/v3/season/`);
+        const res = await axios(`/season`);
         dispatch({
             type: FETCH_SEASON_ANIME,
-            payload: res
+            payload: res.data.anime
         })
     }
 }
