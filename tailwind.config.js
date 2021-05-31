@@ -8,29 +8,41 @@ module.exports = {
       secondary: "#293053",
     }),
     fontSize: {
-      primSize: "2rem",
+      titleSizeS: "0.6rem",
+      titleSizeM: "0.7rem",
+      titleSizeM: "0.8rem",
+      primSize: "1.5rem",
+      primSizeS: "1.7rem",
+      primSizeM: "1.9rem",
+      primSizeL: "2.1rem",
       xxl: "2.5rem",
       xxxl: "3rem",
-      xxxxl: "3.5rem"
+      xxxxl: "3.5rem",
     },
-    borderColor: theme => ({
-      DEFAULT: theme('colors.gray.300', 'currentColor'),
-      'lightblue': '#00B2FF'
+    borderColor: (theme) => ({
+      DEFAULT: theme("colors.gray.300", "currentColor"),
+      lightblue: "#00B2FF",
     }),
     extend: {
       backgroundColor: ["active"],
       colors: {
-        orange: '#FF5C00',
-        lightblue: '#00B2FF'
+        orange: "#FF5C00",
+        lightblue: "#00B2FF",
       },
       fontFamily: {
-        body: ['Risque']
-      }
-    }
+        body: ["Risque"],
+      },
+    },
+    maxWidth: {
+      "xsm": "6.5rem",
+      "sm": "7rem",
+      "md": "8.5rem",
+      "lg": "10rem",
+    },
   },
   variants: {
     extend: {
-      borderColor: ['active']
+      borderColor: ["active"],
     },
   },
   plugins: [],
