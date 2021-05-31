@@ -8,6 +8,8 @@ function searchBar() {
         type="text"
         name="search"
         id="searchId"
+        autoComplete="false"
+        autoCorrect="false"
         placeholder="Search for your favorite anime or manga"
       />
       <svg

@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { HomepageContext } from "../Context/HomepageContext";
 function Header() {
   const searchInputs = useRef(null);
-  const headerRef = useRef(null);
+  const hRef = useRef(null);
   const searchOnClick = () => {
     if (searchInputs.current.classList.contains("opacity-0")) {
       searchInputs.current.classList.remove(
@@ -19,14 +19,12 @@ function Header() {
     }
   };
   const { toggleSidebar, setToggleSidebar } = useContext(HomepageContext);
-  const [scrollPosition, setScrollPosition] = useState(0);
   const handleScroll = () => {
     const position = window.pageYOffset;
-    setScrollPosition(position);
-    if (position > 380) {
-      headerRef.current.classList.remove("-translate-y-24");
-    } else if (position < 380) {
-      headerRef.current.classList.add("-translate-y-24");
+    if (position > 280) {
+      hRef.current.classList.replace("-translate-y-24","-translate-y-0");
+    } else if (position < 280) {
+      hRef.current.classList.replace("-translate-y-0", "-translate-y-24");
     }
   };
 
@@ -43,10 +41,10 @@ function Header() {
   }, []);
   return (
     <div
-      ref={headerRef}
-      className="fixed w-full header transition-all duration-700 ease-in-out transform -translate-y-24 z-10"
+      ref={hRef}
+      className="fixed w-full header transition-all duration-700 ease-in-out transform -translate-y-24 z-20"
     >
-      <div className="main-header border-b-2 pl-4 border-lightblue pr-4 h-12 md:h-16 lg:h-20 w-full flex flex-wrap bg-secondary text-white header justify-items-center content-center z-10">
+      <div className="main-header border-b-2 pl-4 border-lightblue pr-4 h-12 md:h-16 lg:h-20 w-full flex flex-wrap bg-secondary text-white header justify-items-center content-center">
         <div className="menubar flex flex-wrap flex-1 justify-start content-center flex-1 md:hidden">
           <svg
             className="w-6 h-6 cursor-pointer"
@@ -71,7 +69,7 @@ function Header() {
         </div>
         <div className="search flex flex-wrap flex-1 justify-end items-center gap-1">
           <input
-            className="rounded hidden md:block p-1 text-black"
+            className="rounded w-2/4 hidden md:block p-1 text-black"
             type="text"
             name="search"
             placeholder="Search Anime or Manga"
