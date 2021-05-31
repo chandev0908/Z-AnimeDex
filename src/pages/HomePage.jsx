@@ -11,7 +11,7 @@ function HomePage() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   return (
     <HomepageContext.Provider value={{ toggleSidebar, setToggleSidebar }}>
-      <div className="homepage">
+      <div className="homepage font-body">
         <Header />
         <div className="main m-auto bg-primary h-screen grid grid-flow-row place-content-center gap-y-3">
           <div className="transition-all duration-700 ease-in-out brandname flex-1 font-body text-white text-center text-xxl md:text-xxxl lg:text-xxxxl z-10">
