@@ -5,10 +5,10 @@ import SearchResults from "./pages/SearchResults";
 import Preview from "./pages/Preview";
 function App() {
   return (
-    <div className="">
+    <div className="App">
       <Switch>
         <Route exact path="/" component={Homepage} />
-        <Route exact path="/search" component={SearchResults} />
+        <Route exact path="/search/:query" component={SearchResults} />
         <Route exact path="/anime/:id" component={Preview} />
       </Switch>
     </div>

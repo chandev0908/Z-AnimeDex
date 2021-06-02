@@ -15,4 +15,11 @@ module.exports = function (app) {
       changeOrigin: true,
     })
   );
+  app.use(
+    "/search",
+    createProxyMiddleware({
+      target: "https://api.jikan.moe/v3",
+      changeOrigin: true,
+    })
+  );
 };

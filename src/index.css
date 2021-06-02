@@ -2,6 +2,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+html{
+  background: #22263C;
+}
 /* Overide */
 .text-clampSize{
   font-size: clamp(0.4rem, 1rem, 1rem);
