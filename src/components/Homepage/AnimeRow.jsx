@@ -39,7 +39,7 @@ function AnimeRow({ category, animes }) {
                   index={index}
                   onMouseEnter={() => imgHover(index)}
                   onMouseLeave={() => imgHoverLeave(index)}
-                  src={anime.image_url}
+                  src={anime.image_url} 
                   alt={anime.title}
                   className="transition-all duration-700 ease-in-out rounded-lg w-full h-3/4"
                 />
@@ -49,7 +49,7 @@ function AnimeRow({ category, animes }) {
                   onMouseEnter={() => onHoverInfo(index)}
                   onMouseLeave={() => onLeaveHover(index)}
                   className="anime-info mt-2 mb-2 text-titleSizeS md:text-titleSizeM lg:text-titleSizeL grid grid-flow-column justify-center content-start gap-y-1 w-full h-full z-0"
-                >
+                > 
                   <h1>{anime.title}</h1>
                   <div className="rating grid grid-flow-col justify-center items-center">
                     <svg

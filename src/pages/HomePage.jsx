@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
-import SearchBar from "../components/searchBar";
+import SectionTwo from "../components/Homepage/SectionTwo";
+import SearchBar from "../components/SearchBar";
 import Sidebar from "../components/Sidebar";
 import { HomepageContext } from "../Context/HomepageContext";
-import SectionTwo from "../components/Homepage/SectionTwo";
 function HomePage() {
   useEffect(() => {
     document.title = "Z-Animedex";
@@ -12,7 +12,7 @@ function HomePage() {
   return (
     <HomepageContext.Provider value={{ toggleSidebar, setToggleSidebar }}>
       <div className="homepage font-body">
-        <Header />
+        <Header active={false} />
         <div className="main m-auto bg-primary h-screen grid grid-flow-row place-content-center gap-y-3">
           <div className="transition-all duration-700 ease-in-out brandname flex-1 font-body text-white text-center text-xxl md:text-xxxl lg:text-xxxxl z-10">
             <span>Z</span>
