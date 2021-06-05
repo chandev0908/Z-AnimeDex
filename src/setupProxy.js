@@ -22,4 +22,11 @@ module.exports = function (app) {
       changeOrigin: true,
     })
   );
+  app.use(
+    "/anime",
+    createProxyMiddleware({
+      target: "https://api.jikan.moe/v3",
+      changeOrigin: true,
+    })
+  );
 };
