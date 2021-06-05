@@ -6,6 +6,7 @@ module.exports = {
     backgroundColor: (theme) => ({
       primary: "#22263C",
       secondary: "#293053",
+      lightblue: "#00B2FF",
     }),
     fontSize: {
       animeTitle: "0.75rem",
@@ -29,6 +30,9 @@ module.exports = {
       lightblue: "#00B2FF",
     }),
     extend: {
+      gridTemplateColumns:{
+        'rates': "0.4fr auto"
+      },
       backgroundColor: ["active"],
       colors: {
         orange: "#FF5C00",
@@ -39,10 +43,10 @@ module.exports = {
       },
     },
     maxWidth: {
-      "xsm": "6.5rem",
-      "sm": "7rem",
-      "md": "8.5rem",
-      "lg": "10rem",
+      xsm: "6.5rem",
+      sm: "7rem",
+      md: "8.5rem",
+      lg: "10rem",
     },
   },
   variants: {
