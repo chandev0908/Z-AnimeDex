@@ -1,14 +1,16 @@
 import {FETCH_ANIME_DETAILS} from '../types'
 
 const initState = {
-    items: {}
+    items: [],
+    item: {}
 }
 
 export default (state=initState, action) => {
     switch (action.type){
         case FETCH_ANIME_DETAILS:
             return {
-                items: action.payload
+                ...state,
+                item: action.payload
             }
         default:
             return state
