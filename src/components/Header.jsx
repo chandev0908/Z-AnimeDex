@@ -4,21 +4,20 @@ import { Link } from "react-router-dom";
 import { HomepageContext } from "../Context/HomepageContext";
 function Header(bool) {
   const history = useHistory();
-  const location = useLocation();
   const searchInputs = useRef(null);
   const hRef = useRef(null);
   const searchOnClick = () => {
     if (searchInputs.current.classList.contains("opacity-0")) {
       searchInputs.current.classList.remove(
         "transform",
-        "-translate-y-8",
+        "-translate-y-20",
         "opacity-0",
         "hidden"
       );
     } else {
       searchInputs.current.classList.add(
         "transform",
-        "-translate-y-8",
+        "-translate-y-20",
         "opacity-0",
         "hidden"
       );
@@ -40,6 +39,7 @@ function Header(bool) {
   const search = (e) => {
     e.preventDefault();
     history.push(`/search/${e.target["search"].value}`);
+    searchOnClick();
   };
   useEffect(() => {
     searchInputs.current.focus();
@@ -89,6 +89,7 @@ function Header(bool) {
           <form
             action=""
             onSubmit={search}
+            autoComplete="off"
             className="flex flex-wrap flex-1 justify-end items-center gap-1"
           >
             <input
@@ -96,6 +97,7 @@ function Header(bool) {
               type="text"
               name="search"
               placeholder="Search Anime or Manga"
+              minLength="3"
             />
             <svg
               onClick={searchOnClick}
@@ -116,11 +118,12 @@ function Header(bool) {
         </div>
       </div>
       <div className="search text-white bg-transparent">
-        <form action="" onSubmit={search}>
+        <form action="" onSubmit={search} autoComplete="off">
           <input
             ref={searchInputs}
             id="searchInp"
-            className="rounded bg-red-700 w-full md:block p-1 text-black transition-all duration-300 ease-in-out transform -translate-y-24 opacity-0 z-0 border-4"
+            minLength="3"
+            className="rounded bg-red-700 w-full md:block p-1 text-black transition-all duration-300 ease-in-out transform -translate-y-20 opacity-0 z-0 border-4 hidden"
             type="text"
             name="search"
             placeholder="Search Anime or Manga"

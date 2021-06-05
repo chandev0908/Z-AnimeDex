@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from "react";
-import Header from "../components/Header";
 import { motion } from "framer-motion";
-import fetchSearch from "../redux/action/searchAction";
-import { useHistory, useRouteMatch } from "react-router";
+import React, { useEffect, useRef } from "react";
 import { connect } from "react-redux";
+import { useHistory, useRouteMatch } from "react-router";
+import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
+import fetchSearch from "../redux/action/searchAction";
 const searchResultsVariants = {
   hidden: {
     x: "100vw",
@@ -24,8 +25,8 @@ const searchResultsVariants = {
   },
 };
 function SearchPage({ searchQuery, fetchSearch }) {
-  const infoRef = useRef(new Array());
-  const cardRef = useRef(new Array());
+  const infoRef = useRef([]);
+  const cardRef = useRef([]);
   const history = useHistory();
   const match = useRouteMatch();
   const hoverCard = (index) => {
@@ -34,7 +35,6 @@ function SearchPage({ searchQuery, fetchSearch }) {
   const hoverCardLeave = (index) => {
     infoRef.current[index].classList.replace("opacity-80", "opacity-0");
   };
-  console.log(match.params.query);
   useEffect(() => {
     document.title = "Search Results...";
     fetchSearch(match.params.query);
@@ -42,18 +42,19 @@ function SearchPage({ searchQuery, fetchSearch }) {
   return (
     <div className="search-main w-full h-auto bg-primary">
       <Header active={true} />
+      <Sidebar />
       <div className="search-results h-full w-full pt-14 md:pt-20 lg:pt-24 pb-6"></div>
 
       <h1 className="text-titleSizeS md:text-titleSizeM lg:text-titleSizeL text-center text-lightblue">
         Search results of {match.params.query}...
       </h1>
 
-      <div className="results-container w-11/12 h-full bg-secondary m-auto p-1 grid-flow-row grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-0.5 text-white text-center overflow-hidden">
-        {searchQuery !== 0 &&
+      <div className="results-container w-11/12 h-full bg-secondary m-auto p-1 grid-flow-row grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-0.5 text-white text-center overflow-hidden">
+        {searchQuery !== 0 ?
           searchQuery.map((results, index) => {
-            console.log(results);
             return (
               <motion.div
+                key={results.mal_id}
                 className="overflow-hidden"
                 variants={searchResultsVariants}
                 initial="hidden"
@@ -61,9 +62,8 @@ function SearchPage({ searchQuery, fetchSearch }) {
                 exit="exit"
               >
                 <div
-                  key={results.mal_id}
                   index={index}
-                  ref={(element) => cardRef.current.push(element)}
+                  ref={(el) => (cardRef.current[index] = el)}
                   className="result-card w-full h-full grid place-items-center content-start p-1 rounded bg-primary rounded-xl overflow-hidden text-animeTitle sm:text-animeTitleS md:text-animeTitleM lg:text-animeTitleL"
                 >
                   <img
@@ -75,8 +75,9 @@ function SearchPage({ searchQuery, fetchSearch }) {
                     index={index}
                     onMouseLeave={() => hoverCardLeave(index)}
                     onMouseEnter={() => hoverCard(index)}
-                    ref={(element) => infoRef.current.push(element)}
-                    className="info p-2 absolute w-full h-full bg-secondary rounded-xl transition-all duration-700 ease-in-out opacity-0"
+                    onClick={() => history.push(`/anime/${results.mal_id}`)}
+                    ref={(el) => (infoRef.current[index] = el)}
+                    className="info text-titleSize sm:text-titleSizeS md:text-titleSizeM lg:text-titleSizeL p-2 absolute w-full h-full bg-secondary rounded-xl transition-all duration-700 ease-in-out opacity-0"
                   >
                     <h1>{results.title}</h1>
                     <h1 className="flex justify-center items-center">
@@ -101,7 +102,7 @@ function SearchPage({ searchQuery, fetchSearch }) {
                 </div>
               </motion.div>
             );
-          })}
+          }):<h1>Cant Find Anything</h1>}
       </div>
     </div>
   );

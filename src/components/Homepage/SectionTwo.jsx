@@ -16,7 +16,6 @@ function SectionTwo({ animes, actionCreators }) {
     <div className="section-two w-full h-auto bg-secondary pt-6 pb-6">
       <AnimeRow category="Top Anime" animes={animes?.topAnime} />
       <AnimeRow category="Season Now" animes={animes?.animeSeason} />
-      <AnimeRow category="Top Manga" animes={animes?.topManga} />
     </div>
   );
 }

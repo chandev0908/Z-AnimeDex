@@ -48,7 +48,7 @@ function AnimeRow({ category, animes }) {
                   index={index}
                   onMouseEnter={() => onHoverInfo(index)}
                   onMouseLeave={() => onLeaveHover(index)}
-                  className="anime-info mt-2 mb-2 text-titleSizeS md:text-titleSizeM lg:text-titleSizeL grid grid-flow-column justify-center content-start gap-y-1 w-full h-full z-0"
+                  className="anime-info pl-2 pr-2 group mt-2 mb-2 text-titleSizeS md:text-titleSizeM lg:text-titleSizeL grid grid-flow-column justify-center content-start gap-y-1 w-full h-full z-0"
                 > 
                   <h1>{anime.title}</h1>
                   <div className="rating grid grid-flow-col justify-center items-center">
@@ -69,7 +69,7 @@ function AnimeRow({ category, animes }) {
                     <h2>{anime.score}</h2>
                   </div>
                   <h1>Rank: {anime.rank}</h1>
-                  <Link to={`/anime/${anime.mal_id}`} >View</Link>
+                  <Link className="transition-all duration-700 ease-in-out bg-lightblue pt-2 pb-2 opacity-0 rounded-md hover:bg-lightblue group-hover:opacity-100" to={`/anime/${anime.mal_id}`} >View</Link>
                 </div>
               </SwiperSlide>
             );
