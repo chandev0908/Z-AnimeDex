@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { HomepageContext } from "./Context/HomepageContext";
-import "./index.css";
+import "./tailwind.css";
 import Homepage from "./pages/HomePage";
 import Preview from "./pages/Preview";
 import SearchResults from "./pages/SearchResults";
