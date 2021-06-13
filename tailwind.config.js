@@ -30,8 +30,8 @@ module.exports = {
       lightblue: "#00B2FF",
     }),
     extend: {
-      gridTemplateColumns:{
-        'rates': "0.4fr auto"
+      gridTemplateColumns: {
+        rates: "0.4fr auto",
       },
       backgroundColor: ["active"],
       colors: {
@@ -52,6 +52,11 @@ module.exports = {
   variants: {
     extend: {
       borderColor: ["active"],
+    },
+  },
+  style: {
+    postcss: {
+      plugins: [require("tailwindcss"), require("autoprefixer")],
     },
   },
   plugins: [],
