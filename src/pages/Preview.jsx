@@ -26,7 +26,7 @@ function Preview({ details, previewed }) {
     details.fetchAnimeDetails(match.params.id);
     details.fetchAnimeCharacters(match.params.id);
     document.title = previewed.animeDetails.title + " - Z-Animedex";
-  }, [details, match.params.id]);
+  }, [details, match.params.id, document.title]);
   const { animeDetails, animeCharacters } = previewed;
 
   return (
@@ -47,7 +47,7 @@ function Preview({ details, previewed }) {
               src={animeDetails.image_url}
               alt={animeDetails?.image_url}
             />
-            <h1 className="text-animeTitle sm:text-animeTitleS md:text-animeTitleM lg:text-animeTitleL">
+            <h1 className="text-animeTitle mt-4 sm:text-animeTitleS md:text-animeTitleM lg:text-animeTitleL">
               {previewed?.animeDetails?.title}
             </h1>
             <h1>
@@ -77,40 +77,69 @@ function Preview({ details, previewed }) {
                   controls={true}
                 />
               </div>
-            ) : (
-              <h1>No Trailer Found</h1>
-            )}
+            ) : ""}
             <div className="synopsis-main pl-6 pr-6">
-              <h1 className="text-animeTitle sm:text-animeTitleS md:text-animeTitleM lg:text-animeTitleL">
-                Synopsis
+              <h1 className="text-animeTitle m-4 sm:text-animeTitleS md:text-animeTitleM lg:text-animeTitleL">
+                {animeDetails.title}
               </h1>
               <h1>{animeDetails.synopsis}</h1>
             </div>
-            <div className="characters-main grid grid-flow-row w-full sm:grid-cols-2 gap-2">
-              {animeCharacters &&
-                animeCharacters.map((charac) => {
-                  console.log(charac)
-                  return (
-                    <div
-                      className="charac-container flex h-20 w-full bg-secondary"
-                      key={charac.mal_id}
-                    >
-                      <div className="characters flex-1 flex justify-start items-center space-x-2">
-                        <img
-                        className="h-full" src={charac.image_url} alt={charac.name} />
-                        <h1 className="name">{charac.name}</h1>
+            <h1 className="text-animeTitle m-4 sm:text-animeTitleS md:text-animeTitleM lg:text-animeTitleL">
+              Characters & Voice Actors
+            </h1>
+
+            <div className="characters-main grid grid-flow-row w-full sm:grid-cols-2 gap-2 mb-12">
+              {animeCharacters.length >= 4
+                ? animeCharacters.slice(0, 4).map((charac) => {
+                    return (
+                      <div
+                        className="charac-container flex h-20 w-full bg-secondary"
+                        key={charac.mal_id}
+                      >
+                        <div className="characters flex-1 flex justify-start items-center space-x-2">
+                          <img
+                            className="h-full"
+                            src={charac.image_url}
+                            alt={charac.name}
+                          />
+                          <h1 className="name">{charac.name}</h1>
+                        </div>
+                        <div className="voice-actor flex-1 flex justify-end items-center space-x-2">
+                          <h1>{charac?.voice_actors[0]?.name}</h1>
+                          <img
+                            className="h-full"
+                            src={charac?.voice_actors[0]?.image_url}
+                            alt={charac?.voice_actors}
+                          />
+                        </div>
                       </div>
-                      <div className="voice-actor flex-1 flex justify-end items-center space-x-2">
-                        <h1>{charac?.voice_actors[0]?.name}</h1>
-                        <img
-                        className="h-full"
-                          src={charac?.voice_actors[0]?.image_url}
-                          alt={charac?.voice_actors}
-                        />
+                    );
+                  })
+                : animeCharacters.map((charac) => {
+                    return (
+                      <div
+                        className="charac-container flex h-20 w-full bg-secondary"
+                        key={charac.mal_id}
+                      >
+                        <div className="characters flex-1 flex justify-start items-center space-x-2">
+                          <img
+                            className="h-full"
+                            src={charac.image_url}
+                            alt={charac.name}
+                          />
+                          <h1 className="name">{charac.name}</h1>
+                        </div>
+                        <div className="voice-actor flex-1 flex justify-end items-center space-x-2">
+                          <h1>{charac?.voice_actors[0]?.name}</h1>
+                          <img
+                            className="h-full"
+                            src={charac?.voice_actors[0]?.image_url}
+                            alt={charac?.voice_actors}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
             </div>
           </div>
         </div>
