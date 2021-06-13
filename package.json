@@ -1,6 +1,6 @@
 {
+  "homepage": "http://chandev0908.github.io/Z-AnimeDex",
   "name": "z-animedex",
-  "homepage": "http://chandev0908.github.io/z-animedex",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
