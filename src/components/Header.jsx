@@ -26,10 +26,14 @@ function Header(bool) {
   const { toggleSidebar, setToggleSidebar } = useContext(HomepageContext);
   const handleScroll = () => {
     const position = window.pageYOffset;
-    if (position > 280) {
-      hRef.current.classList.replace("-translate-y-24", "-translate-y-0");
-    } else if (position < 280) {
-      hRef.current.classList.replace("-translate-y-0", "-translate-y-24");
+    if (!bool.active) {
+      if (position > 280) {
+        hRef.current.classList.replace("-translate-y-24", "-translate-y-0");
+      } else if (position < 280) {
+        hRef.current.classList.replace("-translate-y-0", "-translate-y-24");
+      }
+    } else {
+      console.log(position);
     }
   };
 
@@ -44,6 +48,7 @@ function Header(bool) {
   useEffect(() => {
     searchInputs.current.focus();
     if (bool.active) {
+      if (hRef.current.classList.contains("-translate-y-0")) return;
       hRef.current.classList.replace("-translate-y-24", "-translate-y-0");
     } else {
       window.addEventListener("onload", handleScroll, { passive: true });
@@ -96,7 +101,7 @@ function Header(bool) {
               className="rounded w-2/4 hidden md:block p-1 text-black"
               type="text"
               name="search"
-              placeholder="Search Anime or Manga"
+              placeholder="Search for your favorite anime"
               minLength="3"
             />
             <svg

@@ -12,7 +12,7 @@ function SearchBar() {
       action=""
       onSubmit={search}
       autoComplete="off"
-      className="flex flex-wrap flex-1 justify-center items-center gap-1 text-white"
+      className="flex flex-wrap flex-1 justify-center items-center gap-1 text-white mb-10"
     >
       <input
         className="transition-all duration-700 ease-in-out rounded p-1.5 md:p-2 lg:p-3 text-black w-64 md:w-80 lg:w-96 border-1 border-lightblue focus:border-lightblue"
@@ -20,7 +20,7 @@ function SearchBar() {
         name="search"
         minLength="3"
         id="searchId"
-        placeholder="Search for your favorite anime or manga"
+        placeholder="Search for your favorite anime"
       />
       <svg
         className="transition-all duration-5000 ease-in-out w-8 md:w-10 lg:w-12 h-8 md:h-10 lg:h-12 cursor-pointer"
