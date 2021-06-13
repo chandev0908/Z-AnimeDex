@@ -5,7 +5,7 @@ function fetchTopManga (page, subtype) {
     if(page){
         if(subtype){
             return async function(dispatch){
-                const res = await axios(`/top/manga/${page}/${subtype}`);
+                const res = await axios(`https://api.jikan.moe/v3/top/manga/${page}/${subtype}`);
                 dispatch({
                     type: FETCH_TOP_MANGA,
                     payload: res.data.top
@@ -13,7 +13,7 @@ function fetchTopManga (page, subtype) {
             }
         }
         return async function(dispatch){
-            const res = await axios(`/top/manga/${page}/`);
+            const res = await axios(`https://api.jikan.moe/v3/top/manga/${page}/`);
             dispatch({
                 type: FETCH_TOP_MANGA,
                 payload: res.data.top
@@ -21,7 +21,7 @@ function fetchTopManga (page, subtype) {
         }
     }else{
         return async function(dispatch){
-            const res = await axios(`/top/manga`);
+            const res = await axios(`https://api.jikan.moe/v3/top/manga`);
             dispatch({
                 type: FETCH_TOP_MANGA,
                 payload: res.data.top

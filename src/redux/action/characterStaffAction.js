@@ -3,7 +3,7 @@ import axios from "axios";
 
 function fetchAnimeCharacters(id) {
   return async function (dispatch) {
-    const res = await axios(`/anime/${id}/characters_staff`);
+    const res = await axios(`https://api.jikan.moe/v3/anime/${id}/characters_staff`);
     dispatch({
       type: FETCH_ANIME_CHARACTERS,
       payload: res.data.characters,
