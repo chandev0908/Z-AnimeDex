@@ -6,16 +6,16 @@ function AnimeRow({ category, animes }) {
   let animeImg = useRef(new Array());
   let animeInfo = useRef(new Array());
   const onHoverInfo = (index) => {
-    animeImg.current[index].classList.replace("h-3/4", "h-0");
+    animeImg.current[index].classList.replace("h-4/6", "h-0");
   };
   const onLeaveHover = (index) => {
-    animeImg.current[index].classList.replace("h-0", "h-3/4");
+    animeImg.current[index].classList.replace("h-0", "h-4/6");
   };
   const imgHover = (index) => {
-    animeImg.current[index].classList.replace("h-3/4", "h-full")
+    animeImg.current[index].classList.replace("h-4/6", "h-3/4")
   }
   const imgHoverLeave = (index) => {
-    animeImg.current[index].classList.replace("h-full", "h-3/4")
+    animeImg.current[index].classList.replace("h-3/4", "h-4/6")
   }
   return (
     <div className="anime-container text-white z-10 w-full overflow-hidden pt-6">
@@ -41,7 +41,7 @@ function AnimeRow({ category, animes }) {
                   onMouseLeave={() => imgHoverLeave(index)}
                   src={anime.image_url} 
                   alt={anime.title}
-                  className="transition-all duration-700 ease-in-out rounded-lg w-full h-3/4"
+                  className="transition-all duration-700 ease-in-out rounded-lg w-full h-4/6"
                 />
                 <div
                   ref={(element) => animeInfo.current.push(element)}
