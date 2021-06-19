@@ -28,7 +28,7 @@ function AnimeRow({ category, animes }) {
         direction={"horizontal"}
       >
         {animes.length !== 0 &&
-          animes.slice(0,15).map((anime, index) => {
+          animes.map((anime, index) => {
             return (
               <SwiperSlide
                 key={anime.mal_id}
