@@ -1,29 +1,12 @@
-import {FETCH_SEASON_ANIME} from '../types';
+import {FETCH_SEASON_ANIME_REQUEST, FETCH_SEASON_ANIME_SUCCESS} from '../types';
 import axios from 'axios';
 
-function fetchAnimeSeason (year, season) {
-    if(year){
-        if(season){
-            return async function(dispatch){
-                const res = await axios(`https://api.jikan.moe/v3/season/${season}`);
-                dispatch({
-                    type: FETCH_SEASON_ANIME,
-                    payload: res
-                })
-            }
-        }
-        return async function(dispatch){
-            const res = await axios(`https://api.jikan.moe/v3/season/${year}`);
-            dispatch({
-                type: FETCH_SEASON_ANIME,
-                payload: res
-            })
-        }
-    }
+function fetchAnimeSeason () {
     return async function(dispatch){
+        dispatch({type: FETCH_SEASON_ANIME_REQUEST})
         const res = await axios(`https://api.jikan.moe/v3/season`);
         dispatch({
-            type: FETCH_SEASON_ANIME,
+            type: FETCH_SEASON_ANIME_SUCCESS,
             payload: res.data.anime
         })
     }
