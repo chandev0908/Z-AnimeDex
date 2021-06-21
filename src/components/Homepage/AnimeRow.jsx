@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-function AnimeRow({ category, animes }) {
-  let animeImg = useRef(new Array());
-  let animeInfo = useRef(new Array());
+function AnimeRow({ category, animes, loader }) {
+  let animeImg = useRef([]);
+  let animeInfo = useRef([]);
   const onHoverInfo = (index) => {
     animeImg.current[index].classList.replace("h-4/6", "h-0");
   };
@@ -12,14 +12,16 @@ function AnimeRow({ category, animes }) {
     animeImg.current[index].classList.replace("h-0", "h-4/6");
   };
   const imgHover = (index) => {
-    animeImg.current[index].classList.replace("h-4/6", "h-3/4")
-  }
+    animeImg.current[index].classList.replace("h-4/6", "h-3/4");
+  };
   const imgHoverLeave = (index) => {
-    animeImg.current[index].classList.replace("h-3/4", "h-4/6")
-  }
+    animeImg.current[index].classList.replace("h-3/4", "h-4/6");
+  };
   return (
     <div className="anime-container text-white z-10 w-full overflow-hidden pt-6">
-      <h1 className=" ease-in-out text-primSize sm:text-primSizeS md:text-primSizeM lg:text-primSizeL m-2">{category && category}</h1>
+      <h1 className=" ease-in-out text-primSize sm:text-primSizeS md:text-primSizeM lg:text-primSizeL m-2">
+        {category && category}
+      </h1>
       <Swiper
         className="animes"
         spaceBetween={20}
@@ -27,7 +29,15 @@ function AnimeRow({ category, animes }) {
         slidesPerView={3}
         direction={"horizontal"}
       >
-        {animes.length !== 0 &&
+        {loader ? (
+          <div className="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        ) : (
+          animes.length !== 0 &&
           animes.map((anime, index) => {
             return (
               <SwiperSlide
@@ -35,21 +45,21 @@ function AnimeRow({ category, animes }) {
                 className="anime relative transition-all duration-700 ease-in-out text-titleSize text-center max-w-xsm sm:max-w-sm md:max-w-md lg:max-w-lg bg-primary rounded-lg"
               >
                 <img
-                  ref={(element) => animeImg.current.push(element)}
+                  ref={(el) => (animeImg.current[index] = el)}
                   index={index}
                   onMouseEnter={() => imgHover(index)}
                   onMouseLeave={() => imgHoverLeave(index)}
-                  src={anime.image_url} 
+                  src={anime.image_url}
                   alt={anime.title}
                   className="transition-all duration-700 ease-in-out rounded-lg w-full h-4/6"
                 />
                 <div
-                  ref={(element) => animeInfo.current.push(element)}
+                  ref={(el) => animeInfo.current[index] = (el)}
                   index={index}
                   onMouseEnter={() => onHoverInfo(index)}
                   onMouseLeave={() => onLeaveHover(index)}
                   className="anime-info pl-2 pr-2 group mt-2 mb-2 text-titleSizeS md:text-titleSizeM lg:text-titleSizeL grid grid-flow-column justify-center content-start gap-y-1 w-full h-full z-0"
-                > 
+                >
                   <h1>{anime.title}</h1>
                   <div className="rating grid grid-flow-col justify-center items-center">
                     <svg
@@ -69,11 +79,17 @@ function AnimeRow({ category, animes }) {
                     <h2>{anime.score}</h2>
                   </div>
                   <h1>Rank: {anime.rank}</h1>
-                  <Link className="transition-all duration-700 ease-in-out bg-lightblue pt-2 pb-2 opacity-0 rounded-md hover:bg-lightblue group-hover:opacity-100" to={`/anime/${anime.mal_id}`} >View</Link>
+                  <Link
+                    className="transition-all duration-700 ease-in-out bg-lightblue pt-2 pb-2 opacity-0 rounded-md hover:bg-lightblue group-hover:opacity-100"
+                    to={`/anime/${anime.mal_id}`}
+                  >
+                    View
+                  </Link>
                 </div>
               </SwiperSlide>
             );
-          })}
+          })
+        )}
       </Swiper>
     </div>
   );
