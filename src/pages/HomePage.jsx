@@ -8,9 +8,9 @@ function HomePage() {
     document.title = "Z-Animedex";
   });
   return (
-    <div className="homepage font-body">
+    <main className="homepage font-body">
       <Header active={false} />
-      <div className="main m-auto bg-primary h-screen grid grid-flow-row place-content-center gap-y-4">
+      <section className="main m-auto bg-primary h-screen grid grid-flow-row place-content-center gap-y-4">
         <div className="transition-all duration-700 ease-in-out brandname flex-1 font-body text-white text-center text-xxl md:text-xxxl lg:text-xxxxl z-10">
           <span>Z</span>
           <span className="text-orange">-</span>
@@ -35,9 +35,9 @@ function HomePage() {
           </svg>
         </div>
         <Sidebar />
-      </div>
+      </section>
       <SectionTwo />
-    </div>
+    </main>
   );
 }
 
