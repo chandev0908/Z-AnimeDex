@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/Z-AnimeDex/static/css/main.747fffb8.chunk.css",
-    "main.js": "/Z-AnimeDex/static/js/main.d4eb0cda.chunk.js",
-    "main.js.map": "/Z-AnimeDex/static/js/main.d4eb0cda.chunk.js.map",
+    "main.css": "/Z-AnimeDex/static/css/main.6055bebd.chunk.css",
+    "main.js": "/Z-AnimeDex/static/js/main.a1c2d7f2.chunk.js",
+    "main.js.map": "/Z-AnimeDex/static/js/main.a1c2d7f2.chunk.js.map",
     "runtime-main.js": "/Z-AnimeDex/static/js/runtime-main.915f60e3.js",
     "runtime-main.js.map": "/Z-AnimeDex/static/js/runtime-main.915f60e3.js.map",
-    "static/js/2.248a3833.chunk.js": "/Z-AnimeDex/static/js/2.248a3833.chunk.js",
-    "static/js/2.248a3833.chunk.js.map": "/Z-AnimeDex/static/js/2.248a3833.chunk.js.map",
+    "static/js/2.a5658cfd.chunk.js": "/Z-AnimeDex/static/js/2.a5658cfd.chunk.js",
+    "static/js/2.a5658cfd.chunk.js.map": "/Z-AnimeDex/static/js/2.a5658cfd.chunk.js.map",
     "index.html": "/Z-AnimeDex/index.html",
-    "static/css/main.747fffb8.chunk.css.map": "/Z-AnimeDex/static/css/main.747fffb8.chunk.css.map",
-    "static/js/2.248a3833.chunk.js.LICENSE.txt": "/Z-AnimeDex/static/js/2.248a3833.chunk.js.LICENSE.txt"
+    "static/css/main.6055bebd.chunk.css.map": "/Z-AnimeDex/static/css/main.6055bebd.chunk.css.map",
+    "static/js/2.a5658cfd.chunk.js.LICENSE.txt": "/Z-AnimeDex/static/js/2.a5658cfd.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.915f60e3.js",
-    "static/js/2.248a3833.chunk.js",
-    "static/css/main.747fffb8.chunk.css",
-    "static/js/main.d4eb0cda.chunk.js"
+    "static/js/2.a5658cfd.chunk.js",
+    "static/css/main.6055bebd.chunk.css",
+    "static/js/main.a1c2d7f2.chunk.js"
   ]
 }
