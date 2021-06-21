@@ -1,4 +1,4 @@
-import {FETCH_SEASON_ANIME} from '../types'
+import {FETCH_SEASON_ANIME_SUCCESS} from '../types'
 
 const initState = {
     items: [],
@@ -7,7 +7,7 @@ const initState = {
 
 export default (state=initState, action) => {
     switch (action.type){
-        case FETCH_SEASON_ANIME:
+        case FETCH_SEASON_ANIME_SUCCESS:
             return{
                 ...state, 
                 items: action.payload

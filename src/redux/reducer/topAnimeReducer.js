@@ -1,4 +1,4 @@
-import {FETCH_TOP_ANIME} from '../types';
+import {FETCH_TOP_ANIME_SUCCESS} from '../types';
 
 const initState = {
     items: [],
@@ -7,7 +7,7 @@ const initState = {
 
 export default function (state=initState, action){
     switch (action.type){
-        case FETCH_TOP_ANIME:
+        case FETCH_TOP_ANIME_SUCCESS:
             return{
                 ...state,
                 items: action.payload,
