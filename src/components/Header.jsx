@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { useHistory, useLocation } from "react-router";
+import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { HomepageContext } from "../Context/HomepageContext";
 function Header(bool) {
@@ -32,8 +32,6 @@ function Header(bool) {
       } else if (position < 280) {
         hRef.current.classList.replace("-translate-y-0", "-translate-y-24");
       }
-    } else {
-      console.log(position);
     }
   };
 
@@ -43,7 +41,6 @@ function Header(bool) {
   const search = (e) => {
     e.preventDefault();
     history.push(`/search/${e.target["search"].value}`);
-    searchOnClick();
   };
   useEffect(() => {
     searchInputs.current.focus();
@@ -61,7 +58,7 @@ function Header(bool) {
     }
   }, [bool.active, handleScroll]);
   return (
-    <div
+    <header
       ref={hRef}
       className="fixed w-full header transition-all duration-700 ease-in-out transform z-20 -translate-y-24 overflow-hidden"
     >
@@ -135,7 +132,7 @@ function Header(bool) {
           />
         </form>
       </div>
-    </div>
+    </header>
   );
 }
 export default Header;
