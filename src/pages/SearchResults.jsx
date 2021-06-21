@@ -5,6 +5,7 @@ import { useHistory, useRouteMatch } from "react-router";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import fetchSearch from "../redux/action/searchAction";
+import { createLoadingSelector } from "../redux/reducer/selectors";
 const searchResultsVariants = {
   hidden: {
     x: "100vw",
@@ -24,7 +25,7 @@ const searchResultsVariants = {
     },
   },
 };
-function SearchPage({ searchQuery, fetchSearch }) {
+function SearchPage({ searchQuery, fetchSearch, loadingReducer }) {
   const infoRef = useRef([]);
   const cardRef = useRef([]);
   const history = useHistory();
@@ -39,6 +40,7 @@ function SearchPage({ searchQuery, fetchSearch }) {
     document.title = "Search Results...";
     fetchSearch(match.params.query);
   }, [fetchSearch, match.params.query]);
+  console.log(loadingReducer.GET_FETCH_SEARCH);
   return (
     <div className="search-main w-full h-auto bg-primary">
       <Header active={true} />
@@ -50,7 +52,16 @@ function SearchPage({ searchQuery, fetchSearch }) {
       </h1>
 
       <div className="results-container w-11/12 h-full bg-secondary m-auto p-1 grid-flow-row grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-0.5 text-white text-center overflow-hidden">
-        {searchQuery !== 0 ?
+        {loadingReducer.GET_FETCH_SEARCH_SUCCESS ? (
+          <div className="loader col-start-2 sm:col-start-3 sm:col-end-5">
+            <div className="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        ) : searchQuery !== 0 ? (
           searchQuery.map((results, index) => {
             return (
               <motion.div
@@ -102,12 +113,17 @@ function SearchPage({ searchQuery, fetchSearch }) {
                 </div>
               </motion.div>
             );
-          }):<h1>Cant Find Anything</h1>}
+          })
+        ) : (
+          <h1>Cant Find Anything</h1>
+        )}
       </div>
     </div>
   );
 }
+const loadingSelector = createLoadingSelector(["GET_FETCH_SEARCH_SUCCESS"]);
 const mapStateToProps = (state) => ({
   searchQuery: state.searchQuery.items,
+  loadingReducer: state.loadingReducer,
 });
 export default connect(mapStateToProps, { fetchSearch })(SearchPage);
