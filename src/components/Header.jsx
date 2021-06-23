@@ -87,7 +87,7 @@ function Header(bool) {
             <span className="text-lightblue">AnimeIndex</span>
           </Link>
         </div>
-        <div className="search flex flex-wrap flex-1 justify-end items-center gap-1">
+        <div className="search flex flex-wrap flex-1 justify-end items-center">
           <form
             action=""
             onSubmit={search}
@@ -101,6 +101,17 @@ function Header(bool) {
               placeholder="Search for your favorite anime"
               minLength="3"
             />
+            <select className="h-full bg-lightblue p-1.5">
+              <option value="anime" className="bg-primary">
+                Anime
+              </option>
+              <option value="manga" className="bg-primary">
+                Manga
+              </option>
+              <option value="people" className="bg-primary">
+                Character
+              </option>
+            </select>
             <svg
               onClick={searchOnClick}
               className="w-6 h-6 cursor-pointer md:hidden"
