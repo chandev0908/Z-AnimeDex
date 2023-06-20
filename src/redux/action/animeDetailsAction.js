@@ -11,7 +11,7 @@ function fetchAnimeDetails(id) {
     const res = await axios(`https://api.jikan.moe/v4/anime/${id}`);
     dispatch({
       type: FETCH_ANIME_DETAILS_SUCCESS,
-      payload: res.data,
+      payload: res.data.data,
     });
   };
 }

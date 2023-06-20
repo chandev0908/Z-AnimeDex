@@ -41,9 +41,7 @@ function SearchPage({ searchQuery, fetchSearch, loadingReducer }) {
   useEffect(() => {
     document.title = "Search Results...";
     fetchSearch(match.params.query);
-    console.log(searchQuery)
   }, [fetchSearch, match.params.query]);
-  console.log(loadingReducer.GET_FETCH_SEARCH);
   return (
     <div className="search-main w-full h-auto bg-primary">
       <Header active={true} />
@@ -65,7 +63,7 @@ function SearchPage({ searchQuery, fetchSearch, loadingReducer }) {
             </div>
           </div>
         ) : searchQuery !== 0 ? (
-          searchQuery.data.map((results, index) => {
+          searchQuery.map((results, index) => {
             return (
               <motion.div
                 key={results.mal_id}

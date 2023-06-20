@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
-import { useRouteMatch } from "react-router";
-import { bindActionCreators } from "redux";
-import { motion } from "framer-motion";
-import fetchAnimeDetails from "../redux/action/animeDetailsAction";
-import { connect } from "react-redux";
+
 import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
 import ReactPlayer from "react-player";
-import fetchAnimeCharacters from "../redux/action/characterStaffAction";
+import Sidebar from "../components/Sidebar";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import { createLoadingSelector } from "../redux/reducer/selectors";
+import fetchAnimeCharacters from "../redux/action/characterStaffAction";
+import fetchAnimeDetails from "../redux/action/animeDetailsAction";
+import { motion } from "framer-motion";
+import { useRouteMatch } from "react-router";
+
 const previewVariants = {
   hidden: {
     opacity: 0,
@@ -23,12 +25,15 @@ const previewVariants = {
 
 function Preview({ details, previewed }) {
   const match = useRouteMatch();
+  const { animeDetails, animeCharacters } = previewed;
+
   useEffect(() => {
     details.fetchAnimeDetails(match.params.id);
     details.fetchAnimeCharacters(match.params.id);
     document.title = previewed.animeDetails.title + " - Z-Animedex";
-  }, [details, match.params.id, previewed.animeDetails.title]);
-  const { animeDetails, animeCharacters } = previewed;
+  }, [details, match.params.id]);
+  setTimeout(() => {}, 5000);
+
   return (
     <div className="preview-main w-full bg-primary font-body">
       <Header active={true} />
@@ -40,7 +45,8 @@ function Preview({ details, previewed }) {
         animate="visible"
         exit="exit"
       >
-        {previewed.loadingReducer.GET_FETCH_ANIME_DETAILS && previewed.loadingReducer.GET_FETCH_ANIME_CHARACTERS ? (
+        {previewed.loadingReducer.GET_FETCH_ANIME_DETAILS &&
+        previewed.loadingReducer.GET_FETCH_ANIME_CHARACTERS ? (
           <div className="lds-ellipsis">
             <div></div>
             <div></div>
@@ -52,8 +58,8 @@ function Preview({ details, previewed }) {
             <div className="img-info">
               <img
                 className="m-auto"
-                src={animeDetails.image_url}
-                alt={animeDetails?.image_url}
+                src={animeDetails?.images?.jpg?.image_url}
+                alt={animeDetails?.title}
               />
               <h1 className="text-animeTitle mt-4 sm:text-animeTitleS md:text-animeTitleM lg:text-animeTitleL">
                 {previewed?.animeDetails?.title}
@@ -76,12 +82,12 @@ function Preview({ details, previewed }) {
               </div>
 
               <h1>Trailer</h1>
-              {animeDetails.trailer_url ? (
+              {animeDetails?.trailer?.embed_url ? (
                 <div className="trailer w-full h-60 md:h-72 grid justify-items-center">
                   <ReactPlayer
                     width="75%"
                     height="100%"
-                    url={animeDetails.trailer_url}
+                    url={animeDetails?.trailer?.embed_url}
                     controls={true}
                   />
                 </div>
@@ -101,25 +107,26 @@ function Preview({ details, previewed }) {
               <div className="characters-main grid grid-flow-row w-full sm:grid-cols-2 gap-2 mb-12">
                 {animeCharacters.length >= 4
                   ? animeCharacters.slice(0, 4).map((charac) => {
+
                       return (
                         <div
                           className="charac-container flex h-20 w-full bg-secondary"
-                          key={charac.mal_id}
+                          key={charac.character.mal_id}
                         >
                           <div className="characters flex-1 flex justify-start items-center space-x-2">
                             <img
                               className="h-full"
-                              src={charac.image_url}
-                              alt={charac.name}
+                              src={charac.character.images?.jpg?.image_url}
+                              alt={charac.character.name}
                             />
-                            <h1 className="name">{charac.name}</h1>
+                            <h1 className="name">{charac.character.name}</h1>
                           </div>
                           <div className="voice-actor flex-1 flex justify-end items-center space-x-2">
-                            <h1>{charac?.voice_actors[0]?.name}</h1>
+                            <h1>{charac.character?.voice_actors?.name}</h1>
                             <img
                               className="h-full"
-                              src={charac?.voice_actors[0]?.image_url}
-                              alt={charac?.voice_actors}
+                              src={charac.character?.voice_actors?.image_url}
+                              alt={charac.character?.voice_actors}
                             />
                           </div>
                         </div>

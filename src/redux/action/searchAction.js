@@ -7,7 +7,7 @@ const fetchSearch = (query) => async (dispatch) => {
   const res = await axios(`https://api.jikan.moe/v4/anime?q=${query}`);
   dispatch({
     type: FETCH_SEARCH_SUCCESS,
-    payload: res.data,
+    payload: res.data.data,
   });
 };
 export default fetchSearch;

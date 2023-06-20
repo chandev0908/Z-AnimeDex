@@ -5,10 +5,10 @@ import axios from "axios";
 function fetchAnimeCharacters(id) {
   return async function (dispatch) {
     dispatch({type: FETCH_ANIME_CHARACTERS_REQUEST})
-    const res = await axios(`https://api.jikan.moe/v4/anime/${id}/characters_staff`);
+    const res = await axios(`https://api.jikan.moe/v4/anime/${id}/characters`);
     dispatch({
       type: FETCH_ANIME_CHARACTERS_SUCCESS,
-      payload: res.data,
+      payload: res.data.data,
     });
   };
 }
