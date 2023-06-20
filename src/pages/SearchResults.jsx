@@ -1,11 +1,13 @@
-import { motion } from "framer-motion";
 import React, { useEffect, useRef } from "react";
-import { connect } from "react-redux";
 import { useHistory, useRouteMatch } from "react-router";
+
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
-import fetchSearch from "../redux/action/searchAction";
+import { connect } from "react-redux";
 import { createLoadingSelector } from "../redux/reducer/selectors";
+import fetchSearch from "../redux/action/searchAction";
+import { motion } from "framer-motion";
+
 const searchResultsVariants = {
   hidden: {
     x: "100vw",
@@ -39,6 +41,7 @@ function SearchPage({ searchQuery, fetchSearch, loadingReducer }) {
   useEffect(() => {
     document.title = "Search Results...";
     fetchSearch(match.params.query);
+    console.log(searchQuery)
   }, [fetchSearch, match.params.query]);
   console.log(loadingReducer.GET_FETCH_SEARCH);
   return (
@@ -62,7 +65,7 @@ function SearchPage({ searchQuery, fetchSearch, loadingReducer }) {
             </div>
           </div>
         ) : searchQuery !== 0 ? (
-          searchQuery.map((results, index) => {
+          searchQuery.data.map((results, index) => {
             return (
               <motion.div
                 key={results.mal_id}
@@ -78,7 +81,7 @@ function SearchPage({ searchQuery, fetchSearch, loadingReducer }) {
                   className="result-card w-full h-full grid place-items-center content-start p-1 rounded bg-primary rounded-xl overflow-hidden text-animeTitle sm:text-animeTitleS md:text-animeTitleM lg:text-animeTitleL"
                 >
                   <img
-                    src={results.image_url}
+                    src={results.images.jpg.image_url}
                     className="w-full h-full rounded-xl"
                   />
                   <h1>{results.title}</h1>
